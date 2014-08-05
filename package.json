@@ -1,0 +1,28 @@
+{
+  "name": "a127-skeleton",
+  "version": "0.0.1",
+  "private": "true",
+  "description": "Apigee 127 Skeleton Project",
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "main": "app.js",
+  "dependencies": {
+    "underscore": "",
+    "express": "",
+    "swagger-tools": "",
+    "volos-swagger": ""
+  },
+  "devDependencies":  {
+    "should" : "3.1.x"
+  },
+  "scripts" : {
+    "start" : "node app.js"
+  },
+  "api": {
+    "name": "a127-example",
+    "basePath": "/a127",
+    "docsPath": "/docs",
+    "main": "app.js"
+  }
+}
