@@ -2,7 +2,7 @@
   "name": "a127-skeleton",
   "version": "0.0.1",
   "private": "true",
-  "description": "Apigee 127 Skeleton Project",
+  "description": "My new Apigee 127 Project",
   "keywords": [],
   "author": "",
   "license": "",
@@ -20,8 +20,8 @@
     "start" : "node app.js"
   },
   "api": {
-    "name": "a127-example",
-    "basePath": "/a127",
+    "name": "a127-skeleton",
+    "basePath": "/api",
     "docsPath": "/docs",
     "main": "app.js"
   }
