@@ -8,7 +8,6 @@
   "license": "",
   "main": "app.js",
   "dependencies": {
-    "underscore": "",
     "express": "",
     "swagger-tools": "",
     "volos-swagger": ""

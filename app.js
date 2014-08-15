@@ -1,39 +1,29 @@
 'use strict';
 
-/**** Init ****/
-
-var config = require('./config');
-var profile = require('./config/profiles/default.json');
-var express = require('express');
-var _ = require('underscore');
-
 
 /******* Swagger *******/
 
-var resourceListing = require('./api/swagger/resource-listing.json');
-var resource = require('./api/swagger/resource.json');
-var swaggerResources = [resource];
-
-var swaggerMetadata = require('swagger-tools/middleware/swagger-metadata');
-var swaggerRouter = require('swagger-tools/middleware/swagger-router');
-var swaggerValidator = require('swagger-tools/middleware/swagger-validator');
-
+var swaggerTools = require('swagger-tools').middleware.v2_0;
+var swaggerObject = require('./api/swagger/swagger.json');
 var volosSwagger = require('volos-swagger');
+
+// todo: make useStubs configurable via a127
+var swaggerRouterConfig = { useStubs: false, controllers: './api/controllers' }
 
 
 /**** Express ****/
 
-var PORT = process.env.PORT || 10010;
+var express = require('express');
 
-function startExpress() {
+var app = express();
 
-  var app = express();
+app.use(swaggerTools.swaggerMetadata(swaggerObject)); // must be first of swagger middleware
+// todo: enable next line when swagger validator is 2.0 compliant
+//  app.use(swaggerTools.swaggerValidator()); // include immediately after metadata
+app.use(volosSwagger()); // include after validation and before router
+app.use(swaggerTools.swaggerRouter(swaggerRouterConfig)); // route requests to your controllers
 
-  // Apigee 127 middleware
-  app.use(swaggerMetadata(resourceListing, swaggerResources));
-  app.use(swaggerValidator());
-  app.use(volosSwagger(profile));
-  app.use(swaggerRouter({useStubs: true, controllers: './api/controllers'}));
+app.listen(process.env.PORT || 10010);
 
-  app.listen(PORT);
-}
+
+console.log('try this:\ncurl http://localhost:10010/hello?name=Scott');
