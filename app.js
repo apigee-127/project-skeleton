@@ -18,9 +18,10 @@ var express = require('express');
 var app = express();
 
 app.use(swaggerTools.swaggerMetadata(swaggerObject)); // must be first of swagger middleware
-// todo: enable next line when swagger validator is 2.0 compliant
-//  app.use(swaggerTools.swaggerValidator()); // include immediately after metadata
+app.use(swaggerTools.swaggerValidator()); // include immediately after metadata
+
 app.use(volosSwagger()); // include after validation and before router
+
 app.use(swaggerTools.swaggerRouter(swaggerRouterConfig)); // route requests to your controllers
 
 app.listen(process.env.PORT || 10010);
