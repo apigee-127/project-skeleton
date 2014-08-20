@@ -9,8 +9,7 @@
   "main": "app.js",
   "dependencies": {
     "express": "",
-    "swagger-tools": "",
-    "volos-swagger": ""
+    "a127-magic": ""
   },
   "devDependencies":  {
     "should" : "3.1.x"
