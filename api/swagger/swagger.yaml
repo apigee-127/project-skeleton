@@ -33,11 +33,11 @@ paths:
         200:
           description: "Success"
           schema:
-            $ref: "#/definitions/HelloWorldResponse"
+            $ref: HelloWorldResponse
         default:
           description: "Error"
           schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: ErrorResponse
 definitions:
   HelloWorldResponse:
     required:
