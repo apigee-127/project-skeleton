@@ -1,53 +1,61 @@
 swagger: 2.0
 info:
   version: "0.0.1"
-  title: "Skeleton App"
-host: "localhost"
-basePath: "/"
+  title: Hello World App
+# during dev, should point to your local machine
+host: localhost
+# basePath prefixes all resource paths 
+basePath: /
+# 
 schemes:
-  - "http"
-  - "https"
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
 consumes:
-  - "application/json"
+  - application/json
+# format of the responses to the client (Accepts)
 produces:
-  - "application/json"
+  - application/json
 x-volos-resources: {}
 paths:
   /hello:
-    x-swagger-router-controller: "hello_world"
+    # binds a127 app logic to a route
+    x-swagger-router-controller: hello_world
     x-volos-authorizations: {}
     x-volos-apply: {}
     get:
-      description: "Returns 'Hello' to the caller"
-      operationId: "hello"
-      produces:
-        - "application/json"
+      description: Returns 'Hello' to the caller
+      # used as the method name of the controller
+      operationId: hello
       parameters:
-        -
-          name: "name"
-          in: "query"
-          description: "The name of the person to whom to say hello"
+        - name: name
+          in: query
+          description: The name of the person to whom to say hello
           required: false
-          type: "string"
+          type: string
       responses:
-        200:
-          description: "Success"
+        "200":
+          description: Success
           schema:
+            # a pointer to a definition
             $ref: HelloWorldResponse
+        # responses may fall through to errors
         default:
-          description: "Error"
+          description: Error
           schema:
             $ref: ErrorResponse
+# complex objects have schema definitions
 definitions:
   HelloWorldResponse:
     required:
-      - "message"
+      - message
     properties:
       message:
-        type: "string"
+        type: string
   ErrorResponse:
     required:
-      - "message"
+      - message
     properties:
       message:
-        type: "string"
+        type: string
