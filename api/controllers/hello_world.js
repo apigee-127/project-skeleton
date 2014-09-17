@@ -4,7 +4,7 @@ var util = require('util');
 
 module.exports = {
   hello: hello
-}
+};
 
 function hello(req, res) {
   var name = req.swagger.params.name.value;
